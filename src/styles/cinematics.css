@@ -1,0 +1,375 @@
+/* cinematics.css - High-End Aviation Action-Thriller Cinematic Presentation */
+
+.cinematic-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: #030712;
+  overflow: hidden;
+  user-select: none;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+}
+
+/* Three.js Canvas container */
+.cinematic-canvas-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Vignette and Atmospheric Screen Overlay */
+.cinematic-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  background: radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.75) 100%);
+}
+
+.cinematic-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 11;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.6;
+}
+
+/* Widescreen 2.39:1 Cinematic Letterbox Bars */
+.cinematic-letterbox-top,
+.cinematic-letterbox-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 8.5vh;
+  background-color: #020617;
+  z-index: 50;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinematic-letterbox-top {
+  top: 0;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.cinematic-letterbox-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* Fullscreen Fade Transition Overlay */
+.cinematic-fade-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  pointer-events: none;
+  z-index: 999;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.cinematic-fade-overlay.fade-in {
+  opacity: 0;
+}
+
+.cinematic-fade-overlay.fade-out {
+  opacity: 1;
+}
+
+/* Overlay UI Content Layer */
+.cinematic-ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(8.5vh + 1.5rem) 3.5rem calc(8.5vh + 1.5rem) 3.5rem;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Top Telemetry / Status Bar */
+.cinematic-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cinematic-telemetry-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cinematic-telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: #38BDF8;
+  background: rgba(15, 23, 42, 0.75);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border-left: 2px solid #0284C7;
+  backdrop-filter: blur(8px);
+}
+
+.cinematic-telemetry-details {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #94A3B8;
+  padding-left: 10px;
+}
+
+/* Skip Button */
+.cinematic-skip-btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #E2E8F0;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.cinematic-skip-btn:hover {
+  background: rgba(30, 58, 138, 0.85);
+  border-color: #38BDF8;
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+.cinematic-key-hint {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  color: #93C5FD;
+}
+
+/* Center Cinematic Title Card (Scene 1) */
+.cinematic-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+  max-width: 860px;
+  align-self: center;
+  animation: cinematicTitleFloat 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cinematicTitleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cinematic-title-eyebrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  color: #F59E0B;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.cinematic-main-title {
+  font-size: clamp(3.5rem, 8.5vw, 6.8rem);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #FFFFFF 20%, #CBD5E1 65%, #64748B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 30px rgba(56, 189, 248, 0.25));
+}
+
+.cinematic-subtitle {
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #38BDF8;
+  margin-top: 0.8rem;
+  margin-bottom: 1.6rem;
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+}
+
+.cinematic-synopsis {
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.06em;
+  color: #94A3B8;
+  max-width: 680px;
+  margin: 0 auto;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Bottom Interaction / Prompt Bar */
+.cinematic-bottom-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.cinematic-continue-prompt {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  color: #F8FAFC;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.25);
+  animation: promptPulse 2.2s infinite ease-in-out;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.cinematic-continue-prompt:hover {
+  background: rgba(2, 132, 199, 0.85);
+  border-color: #7DD3FC;
+  box-shadow: 0 0 32px rgba(56, 189, 248, 0.6);
+  transform: scale(1.03);
+}
+
+@keyframes promptPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(56, 189, 248, 0.6);
+    border-color: rgba(56, 189, 248, 0.85);
+  }
+}
+
+.cinematic-footer-info {
+  display: flex;
+  gap: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #64748B;
+}
+
+/* Takeoff Scene (Scene 2) HUD Overlay Elements */
+.cinematic-takeoff-hud {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.75);
+  border-left: 3px solid #38BDF8;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  backdrop-filter: blur(6px);
+  max-width: 320px;
+}
+
+.cinematic-takeoff-hud-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.72rem;
+}
+
+.cinematic-takeoff-hud-label {
+  color: #94A3B8;
+  letter-spacing: 0.12em;
+}
+
+.cinematic-takeoff-hud-val {
+  color: #38BDF8;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.cinematic-takeoff-hud-val.alert {
+  color: #F59E0B;
+}
+
+.cinematic-takeoff-hud-val.airborne {
+  color: #10B981;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cinematic-ui-layer {
+    padding: calc(7vh + 1rem) 1.5rem calc(7vh + 1rem) 1.5rem;
+  }
+  .cinematic-main-title {
+    font-size: 3.2rem;
+    letter-spacing: 0.15em;
+  }
+  .cinematic-subtitle {
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+  }
+  .cinematic-synopsis {
+    font-size: 0.82rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cinematic-footer-info {
+    display: none;
+  }
+}
