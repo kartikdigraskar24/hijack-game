@@ -1,6 +1,9 @@
 # HIJACK: Every Decision Has a Consequence
 ### A Third-Year Computer Graphics & Gaming (CGG) Engineering Project
 
+🎮 **Live Playable Web Link:** [https://kartikdigraskar24.github.io/hijack-game/](https://kartikdigraskar24.github.io/hijack-game/)  
+*Directly playable on Chrome, Edge, Firefox, Safari — no software installation required.*
+
 ---
 
 ## 1. Project Abstract
